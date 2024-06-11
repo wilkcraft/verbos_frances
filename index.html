@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c2c2c;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-field, .select-field, .output-field {
+            margin-bottom: 20px;
+        }
+        .input-field input, .select-field select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-left: 12px;
+            margin-right: 12px;
+            background-color: #3c3c3c;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #f0f0f0;
+            font-size: 1em;
+        }
+        .button {
+            width: calc(100% - 24px);
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 12px;
+            margin-right: 12px;
+            font-size: 1em;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .output-field {
+            display: none;
+        }
+        @media (min-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .input-field input, .select-field select, .button {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora</h1>
+        <div id="calc-section">
+            <div class="select-field">
+                <select id="operation" onchange="updateOperationFields()">
+                    <option value="" disabled selected>Selecciona una operación</option>
+                    <option value="1">Sumar</option>
+                    <option value="2">Restar</option>
+                    <option value="3">Multiplicar</option>
+                    <option value="4">Dividir</option>
+                    <option value="5">Potencia</option>
+                    <option value="10">Raíz</option>
+                    <option value="7">Operación combinada</option>
+                    <option value="8">Ordenar números de mayor a menor</option>
+                    <option value="9">Ordenar números de menor a mayor</option>
+                </select>
+            </div>
+            <div id="operation-fields"></div>
+            <button class="button" onclick="performOperation()">Calcular</button>
+            <div class="output-field" id="output-section">
+                <h3>Resultado:</h3>
+                <p id="output"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                performOperation();
+            }
+        });
+
+        function updateOperationFields() {
+            let operation = document.getElementById('operation').value;
+            let fields = '';
+            switch (operation) {
+                case '1':
+                case '2':
+                case '3':
+                    fields = `
+                        <div class="input-field">
+                            <input type="number" id="num1" placeholder="Número 1">
+                        </div>
+                        <div class="input-field">
+                            <input type="number" id="num2" placeholder="Número 2">
+                        </div>
+                        <div class="input-field">
+                            <input type="number" id="num3" placeholder="Número adicional (opcional)">
+                        </div>`;
+                    break;
+                case '4':
+                    fields = `
+                        <div class="input-field">
+                            <input type="number" id="num1" placeholder="Número 1">
+                        </div>
+                        <div class="input-field">
+                            <input type="number" id="num2" placeholder="Número 2">
+                        </div>`;
+                    break;
+                case '5':
+                    fields = `
+                        <div class="input-field">
+                            <input type="number" id="num1" placeholder="Base">
+                        </div>
+                        <div class="input-field">
+                            <input type="number" id="num2" placeholder="Exponente">
+                        </div>`;
+                    break;
+                case '10':
+                    fields = `
+                        <div class="input-field">
+                            <input type="number" id="num1" placeholder="Número">
+                        </div>
+                        <div class="input-field">
+                            <input type="number" id="degree" placeholder="Grado">
+                        </div>`;
+                    break;
+                case '7':
+                    fields = `
+                        <div class="input-field">
+                            <input type="text" id="operation_combined" placeholder="Operación combinada">
+                        </div>`;
+                    break;
+                case '8':
+                case '9':
+                    fields = `
+                        <div class="input-field">
+                            <input type="text" id="numbers" placeholder="Números separados por espacio">
+                        </div>`;
+                    break;
+                default:
+                    fields = '';
+            }
+            document.getElementById('operation-fields').innerHTML = fields;
+        }
+
+        function performOperation() {
+            let operation = document.getElementById('operation').value;
+            let output = '';
+            switch (operation) {
+                case '1':
+                    output = sum();
+                    break;
+                case '2':
+                    output = subtract();
+                    break;
+                case '3':
+                    output = multiply();
+                    break;
+                case '4':
+                    output = divide();
+                    break;
+                case '5':
+                    output = power();
+                    break;
+                case '10':
+                    output = nRoot();
+                    break;
+                case '7':
+                    output = combinedOperation();
+                    break;
+                case '8':
+                    output = sortNumbers(false);
+                    break;
+                case '9':
+                    output = sortNumbers(true);
+                    break;
+            }
+            document.getElementById('output').textContent = output;
+            document.getElementById('output-section').style.display = 'block';
+        }
+
+        function sum() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let num3 = parseFloat(document.getElementById('num3').value || 0);
+            return `El resultado de la suma es: ${num1 + num2 + num3}`;
+        }
+
+        function subtract() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let num3 = parseFloat(document.getElementById('num3').value || 0);
+            return `El resultado de la resta es: ${num1 - num2 - num3}`;
+        }
+
+        function multiply() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            let num3 = parseFloat(document.getElementById('num3').value || 1);
+            return `El resultado de la multiplicación es: ${num1 * num2 * num3}`;
+        }
+
+        function divide() {
+            let num1 = parseFloat(document.getElementById('num1').value);
+            let num2 = parseFloat(document.getElementById('num2').value);
+            if (num2 === 0) return 'No se puede dividir por cero';
+            return `El resultado de la división es: ${num1 / num2}`;
+        }
+
+        function power() {
+            let base = parseFloat(document.getElementById('num1').value);
+            let exponent = parseFloat(document.getElementById('num2').value);
+            return `El resultado de la potencia es: ${Math.pow(base, exponent)}`;
+        }
+
+        function nRoot() {
+            let num = parseFloat(document.getElementById('num1').value);
+            let degree = parseFloat(document.getElementById('degree').value);
+            if (degree === 0) return 'El grado de la raíz no puede ser cero';
+            return `El resultado de la raíz es: ${Math.pow(num, 1 / degree)}`;
+        }
+
+        function combinedOperation() {
+            let operation = document.getElementById('operation_combined').value;
+            try {
+                let result = eval(operation);
+                return `El resultado de la operación combinada es: ${result}`;
+            } catch {
+                return 'Operación no válida';
+            }
+        }
+
+        function sortNumbers(asc) {
+            let numbers = document.getElementById('numbers').value.split(' ').map(Number);
+            numbers.sort((a, b) => asc ? a - b : b - a);
+            return `Números ordenados: ${numbers.join(' ')}`;
+        }
+    </script>
+</body>
+</html>
