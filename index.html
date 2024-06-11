@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
+    <title>Verbos de francés</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,6 +42,12 @@
             color: #f0f0f0;
             font-size: 1em;
         }
+        .definition-box {
+            background-color: #3c3c3c;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
         .button {
             width: calc(100% - 24px);
             padding: 12px;
@@ -72,24 +78,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Calculadora</h1>
+        <h1>Verbos de francés</h1>
         <div id="calc-section">
             <div class="select-field">
                 <select id="operation" onchange="updateOperationFields()">
                     <option value="" disabled selected>Selecciona una operación</option>
-                    <option value="1">Sumar</option>
-                    <option value="2">Restar</option>
-                    <option value="3">Multiplicar</option>
-                    <option value="4">Dividir</option>
-                    <option value="5">Potencia</option>
-                    <option value="10">Raíz</option>
-                    <option value="7">Operación combinada</option>
-                    <option value="8">Ordenar números de mayor a menor</option>
-                    <option value="9">Ordenar números de menor a mayor</option>
+                    <option value="1">Savoir (saber)</option>
+                    <option value="2">Vivre (vivir)</option>
+                    <option value="3">Mettre (meter/poner)</option>
+                    <option value="4">Voir (ver)</option>
+                    <option value="5">Se sentir (sentirse)</option>
+                    <option value="6">Avoir (haber)</option>
+                    <option value="7">Essayer (intentar)</option>
+                    <option value="8">Lire (leer)</option>
+                    <option value="9">Écrire (escribir)</option>
                 </select>
             </div>
             <div id="operation-fields"></div>
-            <button class="button" onclick="performOperation()">Calcular</button>
+            <button class="button" onclick="performOperation()">Mostrar</button>
             <div class="output-field" id="output-section">
                 <h3>Resultado:</h3>
                 <p id="output"></p>
@@ -109,57 +115,124 @@
             let fields = '';
             switch (operation) {
                 case '1':
+                    fields = `
+                        <div class="definition-box">
+                            <p><strong>Savoir</strong> (saber)</p>
+                            <p>Je sais</p>
+                            <p>Tu sais</p>
+                            <p>Il/Elle sait</p>
+                            <p>Nous savons</p>
+                            <p>Vous savez</p>
+                            <p>Ils/Elles savent</p>
+                            <p>Participe passé = su</p>
+                        </div>`;
+                    break;
                 case '2':
+                    fields = `
+                        <div class="definition-box">
+                            <p><strong>Vivre</strong> (vivir)</p>
+                            <p>Je vis</p>
+                            <p>Tu vis</p>
+                            <p>Il/Elle vit</p>
+                            <p>Nous vivons</p>
+                            <p>Vous vivez</p>
+                            <p>Ils/Elles vivent</p>
+                            <p>Participe passé = vécu</p>
+                            <p>Futur simple = je vivrai</p>
+                        </div>`;
+                    break;
                 case '3':
                     fields = `
-                        <div class="input-field">
-                            <input type="number" id="num1" placeholder="Número 1">
-                        </div>
-                        <div class="input-field">
-                            <input type="number" id="num2" placeholder="Número 2">
-                        </div>
-                        <div class="input-field">
-                            <input type="number" id="num3" placeholder="Número adicional (opcional)">
+                        <div class="definition-box">
+                            <p><strong>Mettre</strong> (meter/poner)</p>
+                            <p>Je mets</p>
+                            <p>Tu mets</p>
+                            <p>Il/Elle met</p>
+                            <p>Nous mettons</p>
+                            <p>Vous mettez</p>
+                            <p>Ils/Elles mettent</p>
+                            <p>Participe passé = mis</p>
+                            <p>Futur simple = je mettrai</p>
                         </div>`;
                     break;
                 case '4':
                     fields = `
-                        <div class="input-field">
-                            <input type="number" id="num1" placeholder="Número 1">
-                        </div>
-                        <div class="input-field">
-                            <input type="number" id="num2" placeholder="Número 2">
+                        <div class="definition-box">
+                            <p><strong>Voir</strong> (ver)</p>
+                            <p>Je vois</p>
+                            <p>Tu vois</p>
+                            <p>Il/Elle voit</p>
+                            <p>Nous voyons</p>
+                            <p>Vous voyez</p>
+                            <p>Ils/Elles voient</p>
+                            <p>Participe passé = vu</p>
+                            <p>Futur simple = je verrai</p>
                         </div>`;
                     break;
                 case '5':
                     fields = `
-                        <div class="input-field">
-                            <input type="number" id="num1" placeholder="Base">
-                        </div>
-                        <div class="input-field">
-                            <input type="number" id="num2" placeholder="Exponente">
+                        <div class="definition-box">
+                            <p><strong>Se sentir</strong> (sentirse)</p>
+                            <p>Je me sens</p>
+                            <p>Tu te sens</p>
+                            <p>Il/Elle se sent</p>
+                            <p>Nous nous sentons</p>
+                            <p>Vous vous sentez</p>
+                            <p>Ils/Elles se sentent</p>
                         </div>`;
                     break;
-                case '10':
+                case '6':
                     fields = `
-                        <div class="input-field">
-                            <input type="number" id="num1" placeholder="Número">
-                        </div>
-                        <div class="input-field">
-                            <input type="number" id="degree" placeholder="Grado">
+                        <div class="definition-box">
+                            <p><strong>Avoir</strong> (haber)</p>
+                            <p>J'ai</p>
+                            <p>Tu as</p>
+                            <p>Il/Elle a</p>
+                            <p>Nous avons</p>
+                            <p>Vous avez</p>
+                            <p>Ils/Elles ont</p>
                         </div>`;
                     break;
                 case '7':
                     fields = `
-                        <div class="input-field">
-                            <input type="text" id="operation_combined" placeholder="Operación combinada">
+                        <div class="definition-box">
+                            <p><strong>Essayer</strong> (intentar)</p>
+                            <p>J'essaie (essaye)</p>
+                            <p>Tu essaies (essayes)</p>
+                            <p>Il/Elle essaie (essaye)</p>
+                            <p>Nous essayons</p>
+                            <p>Vous essayez</p>
+                            <p>Ils/Elles essaient (essayent)</p>
+                            <p>Participe passé = essayé</p>
+                            <p>Futur simple = j'essaierai (essayerai)</p>
                         </div>`;
                     break;
                 case '8':
+                    fields = `
+                        <div class="definition-box">
+                            <p><strong>Lire</strong> (leer)</p>
+                            <p>Je lis</p>
+                            <p>Tu lis</p>
+                            <p>Il/Elle lit</p>
+                            <p>Nous lisons</p>
+                            <p>Vous lisez</p>
+                            <p>Ils/Elles lisent</p>
+                            <p>Participe passé = lu</p>
+                            <p>Futur simple = je lirai</p>
+                        </div>`;
+                    break;
                 case '9':
                     fields = `
-                        <div class="input-field">
-                            <input type="text" id="numbers" placeholder="Números separados por espacio">
+                        <div class="definition-box">
+                            <p><strong>Écrire</strong> (escribir)</p>
+                            <p>J'écris</p>
+                            <p>Tu écris</p>
+                            <p>Il/Elle écrit</p>
+                            <p>Nous écrivons</p>
+                            <p>Vous écrivez</p>
+                            <p>Ils/Elles écrivent</p>
+                            <p>Participe passé = écrit</p>
+                            <p>Futur simple = j'écrirai</p>
                         </div>`;
                     break;
                 default:
@@ -169,96 +242,9 @@
         }
 
         function performOperation() {
-            let operation = document.getElementById('operation').value;
-            let output = '';
-            switch (operation) {
-                case '1':
-                    output = sum();
-                    break;
-                case '2':
-                    output = subtract();
-                    break;
-                case '3':
-                    output = multiply();
-                    break;
-                case '4':
-                    output = divide();
-                    break;
-                case '5':
-                    output = power();
-                    break;
-                case '10':
-                    output = nRoot();
-                    break;
-                case '7':
-                    output = combinedOperation();
-                    break;
-                case '8':
-                    output = sortNumbers(false);
-                    break;
-                case '9':
-                    output = sortNumbers(true);
-                    break;
-            }
+            let output = 'Francés';
             document.getElementById('output').textContent = output;
             document.getElementById('output-section').style.display = 'block';
-        }
-
-        function sum() {
-            let num1 = parseFloat(document.getElementById('num1').value);
-            let num2 = parseFloat(document.getElementById('num2').value);
-            let num3 = parseFloat(document.getElementById('num3').value || 0);
-            return `El resultado de la suma es: ${num1 + num2 + num3}`;
-        }
-
-        function subtract() {
-            let num1 = parseFloat(document.getElementById('num1').value);
-            let num2 = parseFloat(document.getElementById('num2').value);
-            let num3 = parseFloat(document.getElementById('num3').value || 0);
-            return `El resultado de la resta es: ${num1 - num2 - num3}`;
-        }
-
-        function multiply() {
-            let num1 = parseFloat(document.getElementById('num1').value);
-            let num2 = parseFloat(document.getElementById('num2').value);
-            let num3 = parseFloat(document.getElementById('num3').value || 1);
-            return `El resultado de la multiplicación es: ${num1 * num2 * num3}`;
-        }
-
-        function divide() {
-            let num1 = parseFloat(document.getElementById('num1').value);
-            let num2 = parseFloat(document.getElementById('num2').value);
-            if (num2 === 0) return 'No se puede dividir por cero';
-            return `El resultado de la división es: ${num1 / num2}`;
-        }
-
-        function power() {
-            let base = parseFloat(document.getElementById('num1').value);
-            let exponent = parseFloat(document.getElementById('num2').value);
-            return `El resultado de la potencia es: ${Math.pow(base, exponent)}`;
-        }
-
-        function nRoot() {
-            let num = parseFloat(document.getElementById('num1').value);
-            let degree = parseFloat(document.getElementById('degree').value);
-            if (degree === 0) return 'El grado de la raíz no puede ser cero';
-            return `El resultado de la raíz es: ${Math.pow(num, 1 / degree)}`;
-        }
-
-        function combinedOperation() {
-            let operation = document.getElementById('operation_combined').value;
-            try {
-                let result = eval(operation);
-                return `El resultado de la operación combinada es: ${result}`;
-            } catch {
-                return 'Operación no válida';
-            }
-        }
-
-        function sortNumbers(asc) {
-            let numbers = document.getElementById('numbers').value.split(' ').map(Number);
-            numbers.sort((a, b) => asc ? a - b : b - a);
-            return `Números ordenados: ${numbers.join(' ')}`;
         }
     </script>
 </body>
