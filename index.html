@@ -48,21 +48,6 @@
             border-radius: 5px;
             margin: 10px 0;
         }
-        .button {
-            width: calc(100% - 24px);
-            padding: 12px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 12px;
-            margin-right: 12px;
-            font-size: 1em;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
         .output-field {
             display: none;
         }
@@ -70,7 +55,7 @@
             h1 {
                 font-size: 2em;
             }
-            .input-field input, .select-field select, .button {
+            .input-field input, .select-field select {
                 font-size: 1.2em;
             }
         }
@@ -95,21 +80,10 @@
                 </select>
             </div>
             <div id="operation-fields"></div>
-            <button class="button" onclick="performOperation()">Mostrar</button>
-            <div class="output-field" id="output-section">
-                <h3>Resultado:</h3>
-                <p id="output"></p>
-            </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                performOperation();
-            }
-        });
-
         function updateOperationFields() {
             let operation = document.getElementById('operation').value;
             let fields = '';
@@ -239,12 +213,6 @@
                     fields = '';
             }
             document.getElementById('operation-fields').innerHTML = fields;
-        }
-
-        function performOperation() {
-            let output = 'Francés';
-            document.getElementById('output').textContent = output;
-            document.getElementById('output-section').style.display = 'block';
         }
     </script>
 </body>
